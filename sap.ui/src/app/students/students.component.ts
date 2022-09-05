@@ -1,5 +1,6 @@
+
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatPaginatorIntl } from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Student } from '../models/ui-models/student.model';
@@ -10,38 +11,39 @@ import { StudentService } from './student.service';
   templateUrl: './students.component.html',
   styleUrls: ['./students.component.css']
 })
-export class StudentsComponent implements OnInit
-{
-    @ViewChild (MatPaginator) matPaginator!: MatPaginator;
-    @ViewChild (MatSort) matSort!: MatSort;
-filterString ='';
-
-
-
-  students:Student[]=[];
+export class StudentsComponent implements OnInit {
+  students: Student[] = [];
   displayedColumns: string[] = ['firstName', 'lastName', 'dateOfBirth', 'email', 'mobile', 'gender'];
-dataSource :MatTableDataSource<Student>=new MatTableDataSource<Student>();
+  dataSource: MatTableDataSource<Student> = new MatTableDataSource<Student>();
+  @ViewChild(MatPaginator) matPaginator!: MatPaginator;
+  @ViewChild(MatSort) matSort!: MatSort;
+  filterString = '';
 
-  constructor(private studentService : StudentService) { }
+  constructor(private studentService: StudentService) { }
 
-  ngOnInit(): void
-  {
+  ngOnInit(): void {
+    // Fetch Students
     this.studentService.getStudent()
-    .subscribe(
-    (successResponse) => {
-      this.students =successResponse;
-      this.dataSource= new MatTableDataSource<Student>(this.students);
-      if(this.matPaginator)
-     { this.dataSource.sort=this.matSort}
+      .subscribe(
+        (successResponse) => {
+          this.students = successResponse;
+          this.dataSource = new MatTableDataSource<Student>(this.students);
 
-    },
-    (errorResponse) => {
-      console.log(errorResponse);
-    }
-    );
+          if (this.matPaginator) {
+            this.dataSource.paginator = this.matPaginator;
+          }
+
+          if (this.matSort) {
+            this.dataSource.sort = this.matSort;
+          }
+        },
+        (errorResponse) => {
+          console.log(errorResponse);
+        }
+      );
   }
-filterStudents()
-{
- this.dataSource.filter = this.filterString.trim().toLowerCase();
-}
+
+  filterStudents() {
+    this.dataSource.filter = this.filterString.trim().toLowerCase();
+  }
 }
