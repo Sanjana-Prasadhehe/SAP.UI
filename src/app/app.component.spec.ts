@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'StudentAdminPortal'`, () => {
+  it(`should have as title 'sap.ui'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('StudentAdminPortal');
+    expect(app.title).toEqual('sap.ui');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('StudentAdminPortal app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('sap.ui app is running!');
   });
 });
