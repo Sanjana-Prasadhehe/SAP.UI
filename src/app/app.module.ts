@@ -101,8 +101,6 @@ import { ViewStudentComponent } from './students/view-student/view-student.compo
     MatPaginatorModule,
     MatSortModule,
     MatTableModule,
-
-
     HttpClientModule
   ],
   schemas :[CUSTOM_ELEMENTS_SCHEMA],
