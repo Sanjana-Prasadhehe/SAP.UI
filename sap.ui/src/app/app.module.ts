@@ -56,7 +56,8 @@ import { ViewStudentComponent } from './students/view-student/view-student.compo
 @NgModule({
   declarations: [
     AppComponent,
-    TopNavComponent,
+      TopNavComponent,
+
     StudentsComponent,
     ViewStudentComponent
   ],
@@ -102,7 +103,6 @@ import { ViewStudentComponent } from './students/view-student/view-student.compo
     MatSortModule,
     MatTableModule,
 
-
     HttpClientModule
   ],
   schemas :[CUSTOM_ELEMENTS_SCHEMA],
@@ -110,5 +110,6 @@ import { ViewStudentComponent } from './students/view-student/view-student.compo
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
 
 
